@@ -1,0 +1,4 @@
+CREATE TABLE public.offers
+(
+    data varchar PRIMARY KEY NOT NULL
+);
