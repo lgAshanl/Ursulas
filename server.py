@@ -26,14 +26,17 @@ class Client(object):
         self.sock = sock
         self.addr = addr
         self.id = None
-        self.pub_key = self._get_pub_key()
+        self.pub_key = None
+
+    def _set_pub_key(self, data):
+        self.pub_key = self._get_pub_key(data)
 
     def __str__(self):
         return "Client({})".format(self.addr)
 
-    def _get_pub_key(self):
-        return keys.UmbralPublicKey.from_bytes(
-            b'\x03\xcfy\xd3\xbb\xf6\x9e\x9e\x82\xf6+c\xcar\xdc\xf2QaM\xc1\xf2h\xfdg\xdc\x16\xd0\xb4oA\xdc\x92\xdc')
+    def _get_pub_key(self, data):
+        return keys.UmbralPublicKey.from_bytes(data)
+
 
 
 class Server(object):
@@ -115,8 +118,11 @@ class Server(object):
                     log_info("{} connected".format(str(new_client)))
 
                     # TODO clear
-                    data = namedtuple('Point', ['custom_user_id'])
-                    self._client(new_client, data.custom_user_id)
+                    #data = namedtuple('Point', ['custom_user_id'])
+
+                    #self._client(new_client, data.custom_user_id)
+                    #count = count + 1
+                    #data.custom_user_id = count
 
                 else:
                     client = self._get_client_by_sock(sock)
@@ -132,22 +138,32 @@ class Server(object):
                         "received {len} bytes from {client}: {data}".format(
                             len=len(data), client=client, data=data))
 
+                    #data = pickle.loads(data)
                     data = self._parse_json(data)
                     if "custom_user_id" in data.keys():
+                        client._set_pub_key(data.pub_key)
                         self._client(client, data.custom_user_id)
                     else:
                         self._manager(data)
 
     # Manager
     def _manager(self, data):
-        ids = data.ids
-        text = data.data
+        eth_address = data.ids
+        if "discount" in data.keys():
+            discount = data.data
 
-        offer_custom_id = self.get_offer_custom_id(text)
-        self._add_offer_to_db(offer_custom_id)
-        self._add_offers(ids, offer_custom_id)
+            #offer_custom_id = self.get_offer_custom_id(discount)
+            offer_custom_id = 0
+            self._add_offer_to_db(offer_custom_id)
+            self._add_offers(eth_address, offer_custom_id)
 
-        self.publish(self.encrypt(text))
+            self.publish(self.encrypt(discount))
+        else:
+            for user in eth_address:
+                if not self._is_user_in_db(user):
+                    self._add_user_to_db(user)
+                offer_custom_id = 0
+                self._add_offer_for_user(user, offer_custom_id)
 
     # Bob
     def _client(self, client, custom_user_id):
@@ -155,6 +171,8 @@ class Server(object):
         # TODO (offer_cid, kfrags)
         # prepare data
         # self._send_message_to_client(client, data)
+
+        #
         M, N = 10, 20
         kfrags = pre.generate_kfrags(delegating_privkey=self.alices_private_key,
                                      receiving_pubkey=client.pub_key,
@@ -175,15 +193,6 @@ class Server(object):
         # NOW IT IS BUMP
         f = open('./blockchain', 'wb')
         pickle.dump([ciphertext, capsule.to_bytes()], f)
-        f.close()
-
-    def get_offer_from_blockchain(self, offer_custon_id):
-        # TODO
-        # NOW IT IS BUMP
-        f = open('./blockchain', 'rb')
-        data = pickle.load(f)
-        ciphertext = data[0]
-        capsule = data[1]
         f.close()
 
         return ciphertext, capsule
@@ -252,7 +261,7 @@ class Server(object):
 
     def start(self):
         # TODO clear
-        s, c = self.encrypt(b"test")
+        s, c = self.encrypt(b"discount25")
         self.publish(s, c)
 
         self.server_sock.bind((self.host, self.port))
@@ -268,7 +277,7 @@ def main():
     import logging
     logging.basicConfig(level=logging.DEBUG)
 
-    Server(host='0.0.0.0', port=8079).start()
+    Server(host='0.0.0.0', port=8078).start()
 
 
 if __name__ == "__main__":

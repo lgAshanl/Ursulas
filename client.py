@@ -4,6 +4,8 @@ import select
 
 from protocol import send_message, recv_until_end_messages
 
+from collections import namedtuple
+
 from umbral import pre
 from umbral import keys, signing
 from umbral.config import set_default_curve
@@ -12,6 +14,10 @@ from umbral.params import UmbralParameters
 
 import pickle
 
+import json
+import pandas as pd
+
+import codecs
 
 class Client(object):
     def __init__(self, host, port):
@@ -20,10 +26,12 @@ class Client(object):
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         set_default_curve()
-        self.bobs_private_key = keys.UmbralPrivateKey.from_bytes(
-            b'"\xf7~\xb994\x1a\xe0b\x96.\'m\xa6<S\x06L\xb7\xb2\xf6a\x88^\xd3\xd6\xae!\xc7S^\xba')
-        self.bobs_public_key = keys.UmbralPublicKey.from_bytes(
-            b'\x03\xcfy\xd3\xbb\xf6\x9e\x9e\x82\xf6+c\xcar\xdc\xf2QaM\xc1\xf2h\xfdg\xdc\x16\xd0\xb4oA\xdc\x92\xdc')
+        self.bobs_private_key = keys.UmbralPrivateKey.gen_key()
+        self.bobs_public_key = self.bobs_private_key.get_pubkey()
+        #self.bobs_private_key = keys.UmbralPrivateKey.from_bytes(
+        #    b'"\xf7~\xb994\x1a\xe0b\x96.\'m\xa6<S\x06L\xb7\xb2\xf6a\x88^\xd3\xd6\xae!\xc7S^\xba')
+        #self.bobs_public_key = keys.UmbralPublicKey.from_bytes(
+        #    b'\x03\xcfy\xd3\xbb\xf6\x9e\x9e\x82\xf6+c\xcar\xdc\xf2QaM\xc1\xf2h\xfdg\xdc\x16\xd0\xb4oA\xdc\x92\xdc')
 
         self.alices_public_key = keys.UmbralPublicKey.from_bytes(
             b'\x03\xb6\x81\xba\x8e\xcb\x08e\x7f(\x04\xe3\xff\xbe\xc6UA\xa0\xfe5\x1c\xb2\xe0\xf0\xf7;\xd1D}NHo\xf7')
@@ -51,11 +59,15 @@ class Client(object):
                         sys.exit()
                 else:
                     #data = sys.stdin.readline()[:-1]
+                    #data = namedtuple('Point', ['custom_user_id'])
+                    #data = object
+                    #data = [1, 2, 3, {'4': 5, '6': 7}]
+                    #self.bobs_public_key.to_bytes()
+                    data = pd.read_csv(self.bobs_public_key.to_bytes(), sep='\t', engine='c')
 
-                    #request = self._prepare_req()
+                    request = self._prepare_req(data)
 
-                    #send_message(self.server_socket, request)
-                    pass
+                    send_message(self.server_socket, request)
 
     def _get_raw_offer(self, ciphertext, capsule, kfrags):
         capsule.set_correctness_keys(delegating=self.alices_public_key,
@@ -71,6 +83,7 @@ class Client(object):
             capsule.attach_cfrag(cfrag)
 
         bob_cleartext = pre.decrypt(ciphertext=ciphertext, capsule=capsule, decrypting_key=self.bobs_private_key)
+        print(capsule.to_bytes())
         print(bob_cleartext)
 
     def get_offer_from_blockchain(self, offer_custon_id):
@@ -92,8 +105,10 @@ class Client(object):
             kfrags.append(pre.KFrag.from_bytes(bkf))
         return 0, kfrags
 
-    def _prepare_req(self):
-        return ''
+    def _prepare_req(self, data):
+        #data = pickle.dumps(data)
+        data = json.dumps(data, separators=(',', ':'))
+        return data
 
     def start(self):
         self.server_socket.connect((self.host, self.port))
@@ -107,7 +122,7 @@ def main():
     import logging
     logging.basicConfig(level=logging.DEBUG)
 
-    Client(host='0.0.0.0', port=8079).start()
+    Client(host='0.0.0.0', port=8078).start()
 
 
 if __name__ == "__main__":
