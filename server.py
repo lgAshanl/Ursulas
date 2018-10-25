@@ -17,6 +17,8 @@ from collections import namedtuple
 from umbral.config import set_default_curve
 from umbral import keys, signing, pre
 
+import pickle
+
 
 # collections.namedtuple('Client', 'sock addr')
 class Client(object):
@@ -88,7 +90,8 @@ class Server(object):
 
     def _send_message_to_client(self, client, message):
         # TODO old fn
-        send_message(client.sock, message)
+        data = pickle.dumps(message)
+        send_message(client.sock, data)
         log_info("sended {len} bytes to {client}: {data}".format(
             len=len(message),
             client=client,
@@ -159,8 +162,10 @@ class Server(object):
                                      threshold=M,
                                      N=N)
         #while True:
-        kfrags = json.dumps(kfrags)
-        self._send_message_to_client(client, kfrags)
+        b_kfrags=[]
+        for kf in kfrags:
+            b_kfrags.append(kf.to_bytes())
+        self._send_message_to_client(client, b_kfrags)
 
     def encrypt(self, data):
         return pre.encrypt(self.alices_public_key, data)
@@ -169,17 +174,16 @@ class Server(object):
         # TODO
         # NOW IT IS BUMP
         f = open('./blockchain', 'wb')
-        f.write(ciphertext)
-        f.write(b"\n")
-        f.write(capsule)
+        pickle.dump([ciphertext, capsule.to_bytes()], f)
         f.close()
 
     def get_offer_from_blockchain(self, offer_custon_id):
         # TODO
         # NOW IT IS BUMP
-        f = open('./blockchain', 'r')
-        ciphertext = f.readline()
-        capsule = f.readline()
+        f = open('./blockchain', 'rb')
+        data = pickle.load(f)
+        ciphertext = data[0]
+        capsule = data[1]
         f.close()
 
         return ciphertext, capsule
@@ -247,6 +251,10 @@ class Server(object):
         return True
 
     def start(self):
+        # TODO clear
+        s, c = self.encrypt(b"test")
+        self.publish(s, c)
+
         self.server_sock.bind((self.host, self.port))
         log_info("Server started")
         self.server_sock.listen(10)
@@ -260,7 +268,7 @@ def main():
     import logging
     logging.basicConfig(level=logging.DEBUG)
 
-    Server(host='0.0.0.0', port=8078).start()
+    Server(host='0.0.0.0', port=8079).start()
 
 
 if __name__ == "__main__":
