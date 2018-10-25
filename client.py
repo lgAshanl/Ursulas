@@ -34,15 +34,12 @@ class Client(object):
     def _input_loop(self):
         # refactor this
         while True:
-            print("listen")
             # Linux epoll magic
             inputs_ready_to_read, _, _ = select.select([self.server_socket, sys.stdin], [], [])
 
             for sock in inputs_ready_to_read:
-                print("hello")
                 if sock == self.server_socket:
                     data = recv_until_end_messages(sock)
-                    print("hello")
 
                     if data:
                         offer_cid, kfrags = self._parse_response(data)
