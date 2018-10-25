@@ -289,3 +289,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# TODO HARDCODE
+
+users = [{'custom_user_id': "dsadsadsa", 'hotels' : ["dasdas, dsadas, dassd"]},
+ {'custom_user_id': "dsadsa", 'hotels': ["as, dsadas, d"]}]

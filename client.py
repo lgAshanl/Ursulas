@@ -90,9 +90,26 @@ class Client(object):
         data = pickle.load(f)
         ciphertext = data[0]
         capsule = pre.Capsule.from_bytes(data[1], UmbralParameters(Curve(714)))
-        f.close()
+        #f.close()
 
         return ciphertext, capsule
+
+    import urllib.request as req
+    import json
+
+    def get_discount_by_id(hotel_id):
+        text = req.urlopen("https://playground-api.windingtree.com/hotels/" + id).read()
+
+        your_json = text
+        parsed = json.loads(your_json)
+
+        # заменить на discount
+        key = "description"
+        return parsed[key]
+
+        Ids = ["0xCD3b9104A2d5A8A873288A4254BD6737e8Ca626c", "0x4E8460C624688F06AD93da25758Ac58931FC961B"]
+        for id in Ids:
+            print("%s -> %s" % (id, get_discount_by_id(id)))
 
     def _parse_response(self, data):
         # TODO
