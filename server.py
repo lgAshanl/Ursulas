@@ -139,10 +139,13 @@ class Server(object):
                             len=len(data), client=client, data=data))
 
                     #data = pickle.loads(data)
-                    data = self._parse_json(data)
-                    if "custom_user_id" in data.keys():
-                        client._set_pub_key(data.pub_key)
-                        self._client(client, data.custom_user_id)
+                    flag, data = self._parse_json(data)
+                    if not flag:
+                        data = pickle.loads(data)
+                        pub_key = data[1]
+                        eth_key = data[0]
+                        client._set_pub_key(pub_key)
+                        self._client(client, eth_key)
                     else:
                         self._manager(data)
 
@@ -202,9 +205,13 @@ class Server(object):
         return 0
 
     def _parse_json(self, data):
-        data = json.loads(data, object_hook=lambda d: namedtuple('X', d.keys())(*d.values()))
-        log_info("parsed offer for {clients}".format(clients=data.ids))
-        return data
+        try:
+            data = json.loads(data, object_hook=lambda d: namedtuple('X', d.keys())(*d.values()))
+            log_info("parsed offer for {clients}".format(clients=data.ids))
+            return True, data
+        except:
+            pass
+        return False, data
 
     def _add_offers(self, users, offer_id):
         for user in users:

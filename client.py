@@ -59,13 +59,10 @@ class Client(object):
                         sys.exit()
                 else:
                     #data = sys.stdin.readline()[:-1]
-                    #data = namedtuple('Point', ['custom_user_id'])
-                    #data = object
-                    #data = [1, 2, 3, {'4': 5, '6': 7}]
-                    #self.bobs_public_key.to_bytes()
-                    data = pd.read_csv(self.bobs_public_key.to_bytes(), sep='\t', engine='c')
+                    pub_key = self.bobs_public_key.to_bytes()
+                    eth_key = "~"
 
-                    request = self._prepare_req(data)
+                    request = self._prepare_req(eth_key, pub_key)
 
                     send_message(self.server_socket, request)
 
@@ -105,9 +102,10 @@ class Client(object):
             kfrags.append(pre.KFrag.from_bytes(bkf))
         return 0, kfrags
 
-    def _prepare_req(self, data):
-        #data = pickle.dumps(data)
-        data = json.dumps(data, separators=(',', ':'))
+    def _prepare_req(self, cui, pub_key):
+        #pub_key = pickle.dumps(pub_key))
+        #data = json.dumps([cui, pub_key])
+        data = pickle.dumps([cui, pub_key])
         return data
 
     def start(self):

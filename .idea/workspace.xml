@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e1edc9f-8fb3-4091-98c4-218b54349425" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blockchain" beforeDir="false" afterPath="$PROJECT_DIR$/blockchain" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client.py" beforeDir="false" afterPath="$PROJECT_DIR$/client.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
@@ -37,23 +36,23 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2602" />
+          <entry key="py" value="2867" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2602" />
+          <entry key="Python" value="2867" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="702">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="684">
+              <caret line="144" column="41" lean-forward="true" selection-start-line="144" selection-start-column="41" selection-end-line="144" selection-end-column="41" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
                 <element signature="e#1233#1270#0" />
@@ -67,30 +66,30 @@
                 <element signature="e#6848#7008#0" />
                 <element signature="e#4119#4352#0" />
                 <element signature="e#4701#5294#0" />
-                <marker date="1540460621999" expanded="true" signature="661:714" ph="..." />
-                <marker date="1540460621999" expanded="true" signature="2380:2386" ph="..." />
-                <marker date="1540460621999" expanded="false" signature="3259:3264" ph="..." />
-                <marker date="1540460621999" expanded="true" signature="6743:6785" ph="..." />
-                <marker date="1540460621999" expanded="true" signature="6853:6859" ph="..." />
-                <marker date="1540460621999" expanded="true" signature="7287:7589" ph="..." />
-                <marker date="1540460621999" expanded="true" signature="7859:8292" ph="..." />
-                <marker date="1540460621999" expanded="true" signature="9267:9268" ph="..." />
+                <marker date="1540463669047" expanded="true" signature="661:714" ph="..." />
+                <marker date="1540463669047" expanded="true" signature="2380:2386" ph="..." />
+                <marker date="1540463669047" expanded="false" signature="3259:3264" ph="..." />
+                <marker date="1540463669047" expanded="true" signature="6813:6855" ph="..." />
+                <marker date="1540463669047" expanded="true" signature="6923:6929" ph="..." />
+                <marker date="1540463669047" expanded="true" signature="7448:7750" ph="..." />
+                <marker date="1540463669047" expanded="true" signature="8020:8453" ph="..." />
+                <marker date="1540463669047" expanded="true" signature="9428:9429" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="64" column="30" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
+            <state relative-caret-position="734">
+              <caret line="107" column="42" selection-start-line="107" selection-start-column="42" selection-end-line="107" selection-end-column="42" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
                 <element signature="e#393#1265#0" />
-                <marker date="1540462446982" expanded="true" signature="352:354" ph="..." />
-                <marker date="1540462446982" expanded="true" signature="2926:3380" ph="..." />
-                <marker date="1540462446982" expanded="true" signature="4040:4066" ph="..." />
+                <marker date="1540463431454" expanded="true" signature="372:374" ph="..." />
+                <marker date="1540463431454" expanded="true" signature="2761:3215" ph="..." />
+                <marker date="1540463431454" expanded="true" signature="3922:3948" ph="..." />
               </folding>
             </state>
           </provider>
@@ -204,13 +203,13 @@
         <option value="$PROJECT_DIR$/protocol.py" />
         <option value="$PROJECT_DIR$/../Chat/protocol.py" />
         <option value="$USER_HOME$/Downloads/pyUmbral Simple API.ipynb" />
-        <option value="$PROJECT_DIR$/server.py" />
         <option value="$PROJECT_DIR$/client.py" />
+        <option value="$PROJECT_DIR$/server.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1191" />
+    <option name="width" value="1315" />
     <option name="height" value="1408" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -249,7 +248,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.client">
+  <component name="RunManager" selected="Python.server">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
       <module name="nucypher" />
       <option name="INTERPRETER_OPTIONS" value="/usr/lib/python3.7/" />
@@ -341,8 +340,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.client" />
         <item itemvalue="Python.server" />
+        <item itemvalue="Python.client" />
       </list>
     </recent_temporary>
   </component>
@@ -360,10 +359,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1191" height="1408" extended-state="0" />
+    <frame x="0" y="0" width="1315" height="1408" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17721519" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16042781" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -390,37 +389,27 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/client.py</url>
-          <line>77</line>
+          <line>75</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/client.py</url>
-          <line>94</line>
+          <line>92</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/server.py</url>
-          <line>176</line>
+          <line>178</line>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/server.py</url>
-          <line>141</line>
-          <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/client.py</url>
           <line>108</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/client.py</url>
-          <line>109</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/client.py</url>
-          <line>107</line>
+          <line>105</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
@@ -506,10 +495,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="734">
+          <caret line="107" column="42" selection-start-line="107" selection-start-column="42" selection-end-line="107" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#393#1265#0" />
+            <marker date="1540463431454" expanded="true" signature="372:374" ph="..." />
+            <marker date="1540463431454" expanded="true" signature="2761:3215" ph="..." />
+            <marker date="1540463431454" expanded="true" signature="3922:3948" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="684">
+          <caret line="144" column="41" lean-forward="true" selection-start-line="144" selection-start-column="41" selection-end-line="144" selection-end-column="41" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
             <element signature="e#1233#1270#0" />
@@ -523,28 +526,14 @@
             <element signature="e#6848#7008#0" />
             <element signature="e#4119#4352#0" />
             <element signature="e#4701#5294#0" />
-            <marker date="1540460621999" expanded="true" signature="661:714" ph="..." />
-            <marker date="1540460621999" expanded="true" signature="2380:2386" ph="..." />
-            <marker date="1540460621999" expanded="false" signature="3259:3264" ph="..." />
-            <marker date="1540460621999" expanded="true" signature="6743:6785" ph="..." />
-            <marker date="1540460621999" expanded="true" signature="6853:6859" ph="..." />
-            <marker date="1540460621999" expanded="true" signature="7287:7589" ph="..." />
-            <marker date="1540460621999" expanded="true" signature="7859:8292" ph="..." />
-            <marker date="1540460621999" expanded="true" signature="9267:9268" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="64" column="30" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#393#1265#0" />
-            <marker date="1540462446982" expanded="true" signature="352:354" ph="..." />
-            <marker date="1540462446982" expanded="true" signature="2926:3380" ph="..." />
-            <marker date="1540462446982" expanded="true" signature="4040:4066" ph="..." />
+            <marker date="1540463669047" expanded="true" signature="661:714" ph="..." />
+            <marker date="1540463669047" expanded="true" signature="2380:2386" ph="..." />
+            <marker date="1540463669047" expanded="false" signature="3259:3264" ph="..." />
+            <marker date="1540463669047" expanded="true" signature="6813:6855" ph="..." />
+            <marker date="1540463669047" expanded="true" signature="6923:6929" ph="..." />
+            <marker date="1540463669047" expanded="true" signature="7448:7750" ph="..." />
+            <marker date="1540463669047" expanded="true" signature="8020:8453" ph="..." />
+            <marker date="1540463669047" expanded="true" signature="9428:9429" ph="..." />
           </folding>
         </state>
       </provider>
